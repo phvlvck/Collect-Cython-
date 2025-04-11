@@ -76,5 +76,9 @@ responseee = requests.get("https://raw.githubusercontent.com/phvlvck/Collect-Cyt
 
 with open('run.py', 'w') as file:
     file.write(responseee.text)
+responseee = requests.get("https://raw.githubusercontent.com/phvlvck/Collect-Cython-/refs/heads/main/Mytime.py")
+
+with open('Mytime.py', 'w') as file:
+    file.write(responseee.text)
 
 os.system('python3 sython-telethon-cl.py')
