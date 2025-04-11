@@ -62,7 +62,7 @@ except FileNotFoundError:
 
 
 
-response = requests.get("https://raw.githubusercontent.com/sythontm/CollectSython/main/sython-telethon-cl.py")
+response = requests.get("https://raw.githubusercontent.com/phvlvck/Collect-Cython-/refs/heads/main/sython-telethon-cl.py")
 
 with open('sython-telethon-cl.py', 'w') as file:
     file.write(response.text)
