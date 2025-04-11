@@ -67,12 +67,12 @@ response = requests.get("https://raw.githubusercontent.com/phvlvck/Collect-Cytho
 with open('sython-telethon-cl.py', 'w') as file:
     file.write(response.text)
 
-responsee = requests.get("https://raw.githubusercontent.com/sythontm/CollectSython/main/sythonkalb.py")
+responsee = requests.get("https://raw.githubusercontent.com/phvlvck/Collect-Cython-/refs/heads/main/sythonkalb.py")
 
 with open('sythonkalb.py', 'w') as file:
     file.write(responsee.text)
 
-responseee = requests.get("https://raw.githubusercontent.com/sythontm/CollectSython/main/run.py")
+responseee = requests.get("https://raw.githubusercontent.com/phvlvck/Collect-Cython-/refs/heads/main/run.py")
 
 with open('run.py', 'w') as file:
     file.write(responseee.text)
