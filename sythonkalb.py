@@ -3479,112 +3479,72 @@ sython1.run_until_disconnected()
 """
 
 
+# ========== تحديثات مضافة ==========
+# -*- coding: utf-8 -*-
 
-
-
-
-
-
-
-
-
-
-# ========== الاسم الوقتي ==========
+from telethon import events, functions
 import asyncio
-import time
-from telethon.tl.functions.account import UpdateProfileRequest
 
-auto_name_active = False
-original_name = None
+# ========== محتوى الأقسام الجديدة ==========
 
-@sython1.on(events.NewMessage(outgoing=False, pattern="^/تشغيل_الاسم_الوقتي$"))
-async def start_auto_name(event):
-    global auto_name_active, original_name
-    sender = await event.get_sender()
-    if sender.id != ownerhson_id:
-        return
+omr11 = """**⚝ القسم رقم 11: شرح استخدام الأوامر**
 
-    if auto_name_active:
-        await event.reply("**⌔∮ الاسم الوقتي يعمل بالفعل**")
-        return
+✦ توجد نوعين من الأوامر في هذا السورس:
+1 - الأوامر التي تبدأ بـ `/` وتستخدم غالبًا في البوتات.
+2 - الأوامر التي تبدأ بـ `.` وهي المفضلة داخل المحادثات.
 
-    me = await sython1.get_me()
-    original_name = me.first_name
-    auto_name_active = True
-    await event.reply("**⌔∮ تم تفعيل الاسم الوقتي بنجاح**")
+✦ مثال:
+- الأمر `.تجميع` يستخدم لعرض قائمة أوامر التجميع.
+- الأمر `/point1` يستخدم لبدء تجميع النقاط من بوت المليار.
 
-    while auto_name_active:
-        try:
-            current_time = time.strftime("%I:%M")
-            await sython1(UpdateProfileRequest(first_name=current_time))
-            await asyncio.sleep(60)
-        except Exception as e:
-            print(f"[AutoName Error] {e}")
-            await asyncio.sleep(60)
+✦ نصائح:
+- تأكد من إرسال الأمر داخل نفس المحادثة التي بها البوت أو الحساب.
+- لا ترسل الأوامر داخل القنوات، بل استخدمها في الخاص أو المجموعات.
+- يمكنك نسخ الأوامر من القوائم مباشرة ولصقها في المحادثة.
 
-@sython1.on(events.NewMessage(outgoing=False, pattern="^/ايقاف_الاسم_الوقتي$"))
-async def stop_auto_name(event):
-    global auto_name_active, original_name
-    sender = await event.get_sender()
-    if sender.id != ownerhson_id:
-        return
+**⚝ جميع الأوامر تعمل فقط لصاحب السورس (المطور)**.
+"""
 
-    if not auto_name_active:
-        await event.reply("**⌔∮ الاسم الوقتي غير مفعل**")
-        return
+omr12 = """**⚝ القسم رقم 12: أفكار إضافية واستراتيجيات مفيدة**
 
-    auto_name_active = False
-    await sython1(UpdateProfileRequest(first_name=original_name or "User"))
-    await event.reply("**⌔∮ تم إيقاف الاسم الوقتي وإعادة الاسم الأصلي**")
-# ========== نهاية الاسم الوقتي ==========
+✦ 1 - يمكن دمج الحسابات مع بوت إدارة مثل @MissRoseBot لضبط الصلاحيات أو الردود التلقائية.
+✦ 2 - لزيادة الأمان، لا تترك الحساب في المجموعات العامة كثيرًا.
+✦ 3 - استخدم الأمر `.somy` لتجميع تلقائي كل فترة، واحرص على وضع `300` ثانية لتقليل الحظر.
+✦ 4 - تفعيل تغيير الاسم الوقتي:
 
+`/tname + النص المطلوب`
 
+✦ هذا الأمر سيجعل الحساب يغير اسمه كل دقيقة تلقائيًا باستخدام النص الذي تحدده، مثل: الوقت الحالي، أو جملة معينة.
+✦ مثال: `/tname نقاطي 5K` ← سيصبح اسم الحساب: "نقاطي 5K" ويُحدث تلقائيًا.
 
-# ========== الاسم الوقتي ==========
-import asyncio
-import time
-from telethon.tl.functions.account import UpdateProfileRequest
+"""
 
-auto_name_active = False
-original_name = None
+# ========== إرسال كل الأوامر برسائل مرقمة عند .الاوامر ==========
 
-@sython1.on(events.NewMessage(outgoing=False, pattern="^/تشغيل_الاسم_الوقتي$"))
-async def start_auto_name(event):
-    global auto_name_active, original_name
-    sender = await event.get_sender()
-    if sender.id != ownerhson_id:
-        return
+@sython1.on(events.NewMessage(pattern=r'\.الاوامر'))
+async def send_all_commands(event):
+    all_omrs = [omr1, omr2, omr3, omr4, omr5, omr6, omr7, omr8, omr9, omr10, omr11, omr12]
+    for i, omr in enumerate(all_omrs, start=1):
+        await event.respond(f"**⚝ القسم رقم {i}:**\n\n{omr}")
+        await asyncio.sleep(1)
 
-    if auto_name_active:
-        await event.reply("**⌔∮ الاسم الوقتي يعمل بالفعل**")
-        return
+# ========== كتم شخص من الخاص عند الرد عليه بكلمة كتم ==========
 
-    me = await sython1.get_me()
-    original_name = me.first_name
-    auto_name_active = True
-    await event.reply("**⌔∮ تم تفعيل الاسم الوقتي بنجاح**")
+@sython1.on(events.NewMessage(incoming=True, pattern='كتم'))
+async def mute_user_by_reply(event):
+    if event.is_private and event.reply_to_msg_id:
+        replied = await event.get_reply_message()
+        user = await replied.get_sender()
+        await sython1(functions.contacts.BlockRequest(user.id))
+        await event.respond("تم كتم هذا المستخدم من الخاص.")
 
-    while auto_name_active:
-        try:
-            current_time = time.strftime("%I:%M")
-            await sython1(UpdateProfileRequest(first_name=current_time))
-            await asyncio.sleep(60)
-        except Exception as e:
-            print(f"[AutoName Error] {e}")
-            await asyncio.sleep(60)
+# ========== رسالة ترحيب تلقائية عند أول تواصل ==========
+welcomed_users = set()
 
-@sython1.on(events.NewMessage(outgoing=False, pattern="^/ايقاف_الاسم_الوقتي$"))
-async def stop_auto_name(event):
-    global auto_name_active, original_name
-    sender = await event.get_sender()
-    if sender.id != ownerhson_id:
-        return
-
-    if not auto_name_active:
-        await event.reply("**⌔∮ الاسم الوقتي غير مفعل**")
-        return
-
-    auto_name_active = False
-    await sython1(UpdateProfileRequest(first_name=original_name or "User"))
-    await event.reply("**⌔∮ تم إيقاف الاسم الوقتي وإعادة الاسم الأصلي**")
-# ========== نهاية الاسم الوقتي ==========
+@sython1.on(events.NewMessage(incoming=True))
+async def welcome_new_user(event):
+    if event.is_private:
+        user_id = event.sender_id
+        if user_id not in welcomed_users and user_id != ownerhson_id:
+            welcomed_users.add(user_id)
+            await event.respond("أهلاً بك، أنا حساب آلي، كيف يمكنني مساعدتك؟")
