@@ -3,8 +3,8 @@
 import threading
 import os
 import json
-from sythonkalb import events
-from telethon import TelegramClient
+from sythonkalb import *
+from telethon import TelegramClient, events
 from datetime import datetime
 import time
 from telethon.tl.types import KeyboardButton, ReplyKeyboardMarkup
